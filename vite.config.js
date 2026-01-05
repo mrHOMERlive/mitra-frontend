@@ -1,0 +1,37 @@
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
+import path from 'path'
+
+// https://vite.dev/config/
+export default defineConfig({
+  plugins: [react()],
+  server: {
+    allowedHosts: true,
+    port: 5174,
+    proxy: {
+      '/nda': {
+        target: 'http://localhost:8100',
+        changeOrigin: true,
+        secure: false,
+      },
+      '/health': {
+        target: 'http://localhost:8100',
+        changeOrigin: true,
+        secure: false,
+      },
+    },
+  },
+  resolve: {
+    alias: {
+      '@': path.resolve(__dirname, './src'),
+    },
+    extensions: ['.mjs', '.js', '.jsx', '.ts', '.tsx', '.json']
+  },
+  optimizeDeps: {
+    esbuildOptions: {
+      loader: {
+        '.js': 'jsx',
+      },
+    },
+  },
+}) 
