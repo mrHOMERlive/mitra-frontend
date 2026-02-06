@@ -15,7 +15,8 @@ export default function Contact() {
     company: '',
     requestType: '',
     details: '',
-    message: ''
+    message: '',
+    website_url: '' // Honeypot field
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -28,12 +29,30 @@ export default function Contact() {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Simulate form submission
-    setTimeout(() => {
-      setIsSubmitting(false);
+    try {
+      const payload = {
+        name: formData.fullName,
+        email: formData.email,
+        phone: formData.phone,
+        details: `Company: ${formData.company}\nRequest Type: ${formData.requestType}\nProduct/Quantity: ${formData.details}\n\nMessage:\n${formData.message}`,
+        website_url: formData.website_url
+      };
+
+      const response = await fetch('/api/v1/leads', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(payload),
+      });
+
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+
       setIsSubmitted(true);
       toast.success('Request submitted successfully!');
-      
+
       // Reset form after 3 seconds
       setTimeout(() => {
         setIsSubmitted(false);
@@ -44,10 +63,16 @@ export default function Contact() {
           company: '',
           requestType: '',
           details: '',
-          message: ''
+          message: '',
+          website_url: ''
         });
       }, 3000);
-    }, 1500);
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      toast.error('Failed to submit request. Please try again.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const openWhatsApp = () => {
@@ -56,31 +81,31 @@ export default function Contact() {
 
   return (
     <section id="contact" className="py-20 lg:py-32 bg-white relative overflow-hidden">
-    {/* Radial Gradient Background */}
-    <div className="absolute inset-0">
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[600px] bg-gradient-to-b from-[#2B4192]/5 via-[#36A0A2]/5 to-transparent blur-3xl"></div>
-    </div>
+      {/* Radial Gradient Background */}
+      <div className="absolute inset-0">
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[600px] bg-gradient-to-b from-[#2B4192]/5 via-[#36A0A2]/5 to-transparent blur-3xl"></div>
+      </div>
 
-    {/* Floating Elements */}
-    <div className="absolute inset-0 pointer-events-none overflow-hidden">
-      <div className="absolute top-20 left-10 w-20 h-20 bg-[#40B691]/10 rounded-full blur-xl animate-float"></div>
-      <div className="absolute bottom-40 right-10 w-32 h-32 bg-[#288DAD]/10 rounded-full blur-xl animate-float animation-delay-2000"></div>
-    </div>
+      {/* Floating Elements */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden">
+        <div className="absolute top-20 left-10 w-20 h-20 bg-[#40B691]/10 rounded-full blur-xl animate-float"></div>
+        <div className="absolute bottom-40 right-10 w-32 h-32 bg-[#288DAD]/10 rounded-full blur-xl animate-float animation-delay-2000"></div>
+      </div>
 
-    {/* Contact Form Illustrations */}
-    <div className="absolute top-20 right-10 opacity-5 animate-float">
-      <svg width="120" height="120" viewBox="0 0 120 120">
-        <rect x="20" y="30" width="80" height="60" rx="10" stroke="#2B4192" strokeWidth="4" fill="none"/>
-        <path d="M20 35 L60 65 L100 35" stroke="#36A0A2" strokeWidth="3" fill="none"/>
-      </svg>
-    </div>
-    <div className="absolute bottom-20 left-10 opacity-5 animate-float animation-delay-3000">
-      <svg width="100" height="100" viewBox="0 0 100 100">
-        <circle cx="50" cy="50" r="40" stroke="#40B691" strokeWidth="4" fill="none"/>
-        <path d="M50 30 L50 70 M30 50 L70 50" stroke="#2B4192" strokeWidth="3"/>
-      </svg>
-    </div>
-      
+      {/* Contact Form Illustrations */}
+      <div className="absolute top-20 right-10 opacity-5 animate-float">
+        <svg width="120" height="120" viewBox="0 0 120 120">
+          <rect x="20" y="30" width="80" height="60" rx="10" stroke="#2B4192" strokeWidth="4" fill="none" />
+          <path d="M20 35 L60 65 L100 35" stroke="#36A0A2" strokeWidth="3" fill="none" />
+        </svg>
+      </div>
+      <div className="absolute bottom-20 left-10 opacity-5 animate-float animation-delay-3000">
+        <svg width="100" height="100" viewBox="0 0 100 100">
+          <circle cx="50" cy="50" r="40" stroke="#40B691" strokeWidth="4" fill="none" />
+          <path d="M50 30 L50 70 M30 50 L70 50" stroke="#2B4192" strokeWidth="3" />
+        </svg>
+      </div>
+
       <div className="max-w-4xl mx-auto px-6 lg:px-8 relative z-10">
         {/* Section Header */}
         <div className="text-center mb-12">
@@ -108,6 +133,16 @@ export default function Contact() {
             </div>
           ) : (
             <form onSubmit={handleSubmit} className="space-y-6">
+              {/* Honeypot field - hidden from users */}
+              <input
+                type="text"
+                name="website_url"
+                value={formData.website_url}
+                onChange={(e) => handleChange('website_url', e.target.value)}
+                style={{ display: 'none' }}
+                tabIndex={-1}
+                autoComplete="off"
+              />
               {/* Full Name */}
               <div>
                 <Label htmlFor="fullName" className="text-[#0B1020] font-medium mb-2">
