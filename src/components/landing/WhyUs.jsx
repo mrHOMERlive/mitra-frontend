@@ -1,56 +1,76 @@
 import React from 'react';
-import { Award, Shield, Clock, Eye, BarChart3, Lock } from 'lucide-react';
-
-const values = [
-  {
-    icon: Award,
-    title: 'Commitment to quality',
-    description: 'Structured assessment and consistent standards—every application, every time.',
-    color: '#2B4192'
-  },
-  {
-    icon: Shield,
-    title: 'Compliance-first approach',
-    description: 'Processes designed around responsible lending and regulatory alignment.',
-    color: '#36A0A2'
-  },
-  {
-    icon: Clock,
-    title: 'Reliable execution',
-    description: 'Clear timelines, proactive updates, and disciplined follow-through.',
-    color: '#288DAD'
-  },
-  {
-    icon: Eye,
-    title: 'Transparent partnership',
-    description: 'You see the terms, logic, and steps—before you commit.',
-    color: '#40B691'
-  },
-  {
-    icon: BarChart3,
-    title: 'Business-fit structuring',
-    description: 'Financing aligned to your cycle (inventory, receivables, projects), not one-size-fits-all.',
-    color: '#29887E'
-  },
-  {
-    icon: Lock,
-    title: 'Secure handling of data',
-    description: 'Practical controls for confidentiality and secure document processing.',
-    color: '#2B4192'
-  }
-];
+import { Target, Shield, Clock, Globe2, Award, FileCheck } from 'lucide-react';
+import { useLanguage } from '../LanguageContext';
+import { t } from '../translations';
 
 export default function WhyUs() {
+  const { language } = useLanguage();
+  
+  const values = [
+    {
+      icon: Target,
+      titleKey: 'whyUs.values.commitment.title',
+      descriptionKey: 'whyUs.values.commitment.description',
+      color: '#2B4192'
+    },
+    {
+      icon: Clock,
+      titleKey: 'whyUs.values.rapid.title',
+      descriptionKey: 'whyUs.values.rapid.description',
+      color: '#36A0A2'
+    },
+    {
+      icon: Award,
+      titleKey: 'whyUs.values.reliable.title',
+      descriptionKey: 'whyUs.values.reliable.description',
+      color: '#288DAD'
+    },
+    {
+      icon: Globe2,
+      titleKey: 'whyUs.values.transparent.title',
+      descriptionKey: 'whyUs.values.transparent.description',
+      color: '#40B691'
+    },
+    {
+      icon: Shield,
+      titleKey: 'whyUs.values.regulatory.title',
+      descriptionKey: 'whyUs.values.regulatory.description',
+      color: '#2D368C'
+    },
+    {
+      icon: FileCheck,
+      titleKey: 'whyUs.values.documentation.title',
+      descriptionKey: 'whyUs.values.documentation.description',
+      color: '#29887E'
+    }
+  ];
+  
   return (
-    <section id="why-us" className="py-20 lg:py-32 bg-white">
-      <div className="max-w-7xl mx-auto px-6 lg:px-8">
+    <section id="why-us" className="py-20 lg:py-32 bg-white relative overflow-hidden">
+      {/* Background Pattern */}
+      <div className="absolute inset-0 bg-[linear-gradient(rgba(43,65,146,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(43,65,146,0.02)_1px,transparent_1px)] bg-[size:64px_64px]"></div>
+      
+      {/* Decorative Value Illustrations */}
+      <div className="absolute top-20 right-10 opacity-5 animate-float">
+        <svg width="140" height="140" viewBox="0 0 140 140">
+          <polygon points="70,10 130,50 110,120 30,120 10,50" fill="#2B4192"/>
+        </svg>
+      </div>
+      <div className="absolute bottom-20 left-20 opacity-5 animate-float animation-delay-4000">
+        <svg width="110" height="110" viewBox="0 0 110 110">
+          <circle cx="55" cy="55" r="45" stroke="#36A0A2" strokeWidth="5" fill="none"/>
+          <circle cx="55" cy="55" r="25" fill="#40B691"/>
+        </svg>
+      </div>
+      
+      <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
         {/* Section Header */}
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#0B1020] mb-4">
-            Why PT. MITRA INTERNATIONAL TRANSAKSI
+            {t(language, 'whyUs.title')}
           </h2>
           <p className="text-lg text-[#0B1020]/60 max-w-2xl mx-auto">
-            Built on principles that protect your interests and power your growth
+            {t(language, 'whyUs.subtitle')}
           </p>
         </div>
 
@@ -74,10 +94,10 @@ export default function WhyUs() {
 
                   {/* Content */}
                   <h3 className="text-xl font-bold text-[#0B1020] mb-4">
-                    {value.title}
+                    {t(language, value.titleKey)}
                   </h3>
                   <p className="text-[#0B1020]/70 leading-relaxed">
-                    {value.description}
+                    {t(language, value.descriptionKey)}
                   </p>
                 </div>
               </div>

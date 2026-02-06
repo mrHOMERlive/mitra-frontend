@@ -1,40 +1,58 @@
 import React from 'react';
-import { MessageSquare, FileSearch, FileCheck, Coins } from 'lucide-react';
-
-const steps = [
-  {
-    number: '01',
-    icon: MessageSquare,
-    title: 'Tell us what you need',
-    description: 'Share your funding goal, timeline, and business profile.'
-  },
-  {
-    number: '02',
-    icon: FileSearch,
-    title: 'Quick document review',
-    description: 'We assess basic eligibility and request the minimum required documentation.'
-  },
-  {
-    number: '03',
-    icon: FileCheck,
-    title: 'Terms proposal',
-    description: 'Receive a clear proposal outlining amount, tenor, fees (if any), and repayment structure.'
-  },
-  {
-    number: '04',
-    icon: Coins,
-    title: 'Disbursement & support',
-    description: 'Once approved and signed, funding is processed and your account is supported through the lifecycle.'
-  }
-];
+import { MessageSquare, FileSearch, FileCheck, Truck } from 'lucide-react';
+import { useLanguage } from '../LanguageContext';
+import { t } from '../translations';
 
 export default function HowItWorks() {
+  const { language } = useLanguage();
+  
+  const steps = [
+    {
+      number: '01',
+      icon: MessageSquare,
+      titleKey: 'howItWorks.steps.submit.title',
+      descriptionKey: 'howItWorks.steps.submit.description'
+    },
+    {
+      number: '02',
+      icon: FileSearch,
+      titleKey: 'howItWorks.steps.quote.title',
+      descriptionKey: 'howItWorks.steps.quote.description'
+    },
+    {
+      number: '03',
+      icon: FileCheck,
+      titleKey: 'howItWorks.steps.verification.title',
+      descriptionKey: 'howItWorks.steps.verification.description'
+    },
+    {
+      number: '04',
+      icon: Truck,
+      titleKey: 'howItWorks.steps.execution.title',
+      descriptionKey: 'howItWorks.steps.execution.description'
+    }
+  ];
+  
   return (
-    <section id="how-it-works" className="py-20 lg:py-32 bg-white relative overflow-hidden">
+    <section id="how-it-works" className="py-20 lg:py-32 bg-gradient-to-br from-white via-[#F0F7F9] to-[#E8F3F5] relative overflow-hidden">
       {/* Animated Background Pattern */}
       <div className="absolute inset-0 opacity-30">
         <div className="absolute top-10 left-10 w-72 h-72 bg-[#2B4192]/5 rounded-full blur-3xl animate-pulse"></div>
         <div className="absolute bottom-10 right-10 w-96 h-96 bg-[#40B691]/5 rounded-full blur-3xl animate-pulse animation-delay-2000"></div>
+      </div>
+      
+      {/* Decorative Process Illustrations */}
+      <div className="absolute top-1/4 left-10 opacity-5 animate-float">
+        <svg width="100" height="100" viewBox="0 0 100 100">
+          <path d="M20 50 L50 20 L80 50 L50 80 Z" stroke="#2B4192" strokeWidth="4" fill="none"/>
+          <circle cx="50" cy="50" r="15" fill="#36A0A2"/>
+        </svg>
+      </div>
+      <div className="absolute bottom-1/4 right-10 opacity-5 animate-float animation-delay-3000">
+        <svg width="120" height="120" viewBox="0 0 120 120">
+          <rect x="20" y="20" width="80" height="80" rx="15" stroke="#40B691" strokeWidth="4" fill="none"/>
+          <path d="M40 60 L60 40 L80 60" stroke="#2B4192" strokeWidth="3" fill="none"/>
+        </svg>
       </div>
       
       {/* Connecting Line Background */}
@@ -44,13 +62,13 @@ export default function HowItWorks() {
         {/* Section Header */}
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#0B1020] mb-4">
-            How it works
+            {t(language, 'howItWorks.title')}
           </h2>
           <p className="text-lg text-[#0B1020]/60 max-w-2xl mx-auto mb-8">
-            A straightforward process designed for clarity and speed
+            {t(language, 'howItWorks.subtitle')}
           </p>
           <p className="text-sm font-medium text-[#2B4192] max-w-xl mx-auto">
-            We prioritize clarity: no confusing steps, no hidden surprises.
+            {t(language, 'howItWorks.note')}
           </p>
         </div>
 
@@ -78,10 +96,10 @@ export default function HowItWorks() {
 
                   {/* Content */}
                   <h3 className="text-lg font-bold text-[#0B1020] mb-3">
-                    {step.title}
+                    {t(language, step.titleKey)}
                   </h3>
                   <p className="text-sm text-[#0B1020]/70 leading-relaxed">
-                    {step.description}
+                    {t(language, step.descriptionKey)}
                   </p>
                 </div>
               </div>

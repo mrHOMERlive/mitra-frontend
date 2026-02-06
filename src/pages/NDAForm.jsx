@@ -20,7 +20,7 @@ export default function NDAForm() {
   const [ndaId, setNdaId] = useState(null);
   const [isGenerating, setIsGenerating] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  
+
   const [formData, setFormData] = useState({
     effective_date: today,
     nda_type: 'bilingual',
@@ -43,15 +43,15 @@ export default function NDAForm() {
 
   const handleFileUpload = async (file, language) => {
     if (!file) return;
-    
+
     if (!ndaId) {
       toast.error('Please generate NDA first before uploading signed file');
       return;
     }
-    
+
     const setter = language === 'en' ? setUploadingEn : setUploadingRu;
     const urlSetter = language === 'en' ? setSignedFileUrlEn : setSignedFileUrlRu;
-    
+
     setter(true);
     try {
       // Создаем FormData для загрузки файла
@@ -118,7 +118,7 @@ __________________ / ${formData.signatory_name_en}`;
     try {
       // Формируем данные для API в зависимости от типа
       let requestBody;
-      
+
       if (type === 'eng') {
         // Английская версия - только английские поля
         requestBody = {
@@ -205,14 +205,14 @@ __________________ / ${formData.signatory_name_en}`;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
     // Validation - bilingual requires all fields
-    const requiredFields = ['company_name_en', 'company_name_ru', 'country_en', 'country_ru', 
-                           'registration_number', 'signatory_name_en', 'signatory_name_ru', 
-                           'signatory_title_en', 'address_en', 'address_ru', 'contact_email'];
-    
+    const requiredFields = ['company_name_en', 'company_name_ru', 'country_en', 'country_ru',
+      'registration_number', 'signatory_name_en', 'signatory_name_ru',
+      'signatory_title_en', 'address_en', 'address_ru', 'contact_email'];
+
     const missingFields = requiredFields.filter(field => !formData[field]);
-    
+
     if (missingFields.length > 0) {
       toast.error('Please fill in all required fields');
       return;
@@ -233,7 +233,7 @@ __________________ / ${formData.signatory_name_en}`;
       toast.error('Please upload the signed Bilingual NDA before submitting');
       return;
     }
-    
+
     setIsSubmitting(true);
     try {
       // Вызов API для финальной отправки NDA
@@ -246,7 +246,7 @@ __________________ / ${formData.signatory_name_en}`;
       }
 
       const result = await response.json();
-      
+
       // Показываем модальное окно успеха
       setShowSuccessModal(true);
       toast.success('NDA submitted successfully!');
@@ -258,11 +258,11 @@ __________________ / ${formData.signatory_name_en}`;
     }
   };
 
-  const canDownload = formData.company_name_en && formData.company_name_ru && 
-                      formData.country_en && formData.country_ru &&
-                      formData.registration_number && formData.signatory_name_en && 
-                      formData.signatory_name_ru && formData.signatory_title_en && 
-                      formData.address_en && formData.address_ru && formData.contact_email;
+  const canDownload = formData.company_name_en && formData.company_name_ru &&
+    formData.country_en && formData.country_ru &&
+    formData.registration_number && formData.signatory_name_en &&
+    formData.signatory_name_ru && formData.signatory_title_en &&
+    formData.address_en && formData.address_ru && formData.contact_email;
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-[#F6F9FC] to-white py-12 px-4 sm:px-6 lg:px-8">
@@ -270,7 +270,7 @@ __________________ / ${formData.signatory_name_en}`;
         {/* Header */}
         <div className="text-center mb-8">
           <div className="flex items-center justify-center gap-3 mb-4">
-            <img 
+            <img
               src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6949a7445bc738ab35d3303b/b2b800413_PTMITLogoIcon.png"
               alt="PT. MITRA INTERNATIONAL TRANSAKSI"
               className="h-16 w-auto"
@@ -409,7 +409,7 @@ __________________ / ${formData.signatory_name_en}`;
               {/* Signatory Information */}
               <div className="border-t pt-4">
                 <h4 className="text-sm font-semibold text-[#0B1020] mb-4">Authorized Signatory</h4>
-                
+
                 <div className="grid md:grid-cols-2 gap-4 mb-4">
                   <div>
                     <Label htmlFor="signatory_name_en">Full Name (English) *</Label>
@@ -501,7 +501,7 @@ __________________ / ${formData.signatory_name_en}`;
               <p className="text-sm text-[#0B1020]/70">
                 Once you've filled in all the information above, download the bilingual NDA document, sign it, and upload the signed files below.
               </p>
-              
+
               {ndaId && (
                 <div className="bg-green-50 border border-green-200 rounded-lg p-3 text-sm">
                   <div className="flex items-center gap-2 text-green-700">
@@ -513,7 +513,7 @@ __________________ / ${formData.signatory_name_en}`;
                   </p>
                 </div>
               )}
-              
+
               <div className="flex flex-wrap gap-3">
                 <Button
                   type="button"
@@ -530,7 +530,7 @@ __________________ / ${formData.signatory_name_en}`;
                   ) : (
                     <>
                       <Download className="w-4 h-4 mr-2" />
-                      Download Bilingual NDA (ENG/RU)
+                      Download Bilingual NDA (ENG/RUS)
                     </>
                   )}
                 </Button>
@@ -710,7 +710,7 @@ __________________ / ${formData.signatory_name_en}`;
           </div>
 
           <p className="text-xs text-center text-[#0B1020]/50 max-w-2xl mx-auto">
-            By submitting this form, you agree to enter into a Non-Disclosure Agreement with PT. MITRA INTERNATIONAL TRANSAKSI 
+            By submitting this form, you agree to enter into a Non-Disclosure Agreement with PT. MITRA INTERNATIONAL TRANSAKSI
             for a period of 5 years from the effective date. All information provided will be kept confidential.
           </p>
         </form>

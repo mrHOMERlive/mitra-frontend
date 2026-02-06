@@ -13,8 +13,8 @@ export default function Contact() {
     email: '',
     phone: '',
     company: '',
-    fundingPurpose: '',
-    desiredAmount: '',
+    requestType: '',
+    details: '',
     message: ''
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -42,8 +42,8 @@ export default function Contact() {
           email: '',
           phone: '',
           company: '',
-          fundingPurpose: '',
-          desiredAmount: '',
+          requestType: '',
+          details: '',
           message: ''
         });
       }, 3000);
@@ -51,30 +51,44 @@ export default function Contact() {
   };
 
   const openWhatsApp = () => {
-    window.open('https://wa.me/6281117796125', '_blank');
+    window.open('https://wa.me/6281117796126', '_blank');
   };
 
   return (
     <section id="contact" className="py-20 lg:py-32 bg-white relative overflow-hidden">
-      {/* Radial Gradient Background */}
-      <div className="absolute inset-0">
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[600px] bg-gradient-to-b from-[#2B4192]/5 via-[#36A0A2]/5 to-transparent blur-3xl"></div>
-      </div>
-      
-      {/* Floating Elements */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        <div className="absolute top-20 left-10 w-20 h-20 bg-[#40B691]/10 rounded-full blur-xl animate-float"></div>
-        <div className="absolute bottom-40 right-10 w-32 h-32 bg-[#288DAD]/10 rounded-full blur-xl animate-float animation-delay-2000"></div>
-      </div>
+    {/* Radial Gradient Background */}
+    <div className="absolute inset-0">
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[600px] bg-gradient-to-b from-[#2B4192]/5 via-[#36A0A2]/5 to-transparent blur-3xl"></div>
+    </div>
+
+    {/* Floating Elements */}
+    <div className="absolute inset-0 pointer-events-none overflow-hidden">
+      <div className="absolute top-20 left-10 w-20 h-20 bg-[#40B691]/10 rounded-full blur-xl animate-float"></div>
+      <div className="absolute bottom-40 right-10 w-32 h-32 bg-[#288DAD]/10 rounded-full blur-xl animate-float animation-delay-2000"></div>
+    </div>
+
+    {/* Contact Form Illustrations */}
+    <div className="absolute top-20 right-10 opacity-5 animate-float">
+      <svg width="120" height="120" viewBox="0 0 120 120">
+        <rect x="20" y="30" width="80" height="60" rx="10" stroke="#2B4192" strokeWidth="4" fill="none"/>
+        <path d="M20 35 L60 65 L100 35" stroke="#36A0A2" strokeWidth="3" fill="none"/>
+      </svg>
+    </div>
+    <div className="absolute bottom-20 left-10 opacity-5 animate-float animation-delay-3000">
+      <svg width="100" height="100" viewBox="0 0 100 100">
+        <circle cx="50" cy="50" r="40" stroke="#40B691" strokeWidth="4" fill="none"/>
+        <path d="M50 30 L50 70 M30 50 L70 50" stroke="#2B4192" strokeWidth="3"/>
+      </svg>
+    </div>
       
       <div className="max-w-4xl mx-auto px-6 lg:px-8 relative z-10">
         {/* Section Header */}
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#0B1020] mb-4">
-            Request your personalized lending proposal
+            Request your personalized quotation
           </h2>
           <p className="text-lg text-[#0B1020]/60 max-w-2xl mx-auto">
-            Tell us what you're trying to achieve. We'll respond with next steps and a structured option.
+            Tell us what you need. We'll respond with sourcing options and delivery plans.
           </p>
         </div>
 
@@ -158,40 +172,40 @@ export default function Contact() {
                 />
               </div>
 
-              {/* Funding Purpose & Amount */}
+              {/* Request Type & Details */}
               <div className="grid md:grid-cols-2 gap-6">
                 <div>
-                  <Label htmlFor="fundingPurpose" className="text-[#0B1020] font-medium mb-2">
-                    Funding purpose <span className="text-red-500">*</span>
+                  <Label htmlFor="requestType" className="text-[#0B1020] font-medium mb-2">
+                    Request type <span className="text-red-500">*</span>
                   </Label>
                   <Select
                     required
-                    value={formData.fundingPurpose}
-                    onValueChange={(value) => handleChange('fundingPurpose', value)}
+                    value={formData.requestType}
+                    onValueChange={(value) => handleChange('requestType', value)}
                   >
                     <SelectTrigger className="bg-white border-[#E6ECF2]">
-                      <SelectValue placeholder="Select purpose" />
+                      <SelectValue placeholder="Select type" />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="working-capital">Working capital</SelectItem>
-                      <SelectItem value="trade-invoices">Trade & invoices</SelectItem>
-                      <SelectItem value="inventory">Inventory</SelectItem>
-                      <SelectItem value="equipment">Equipment</SelectItem>
+                      <SelectItem value="sourcing">Product sourcing</SelectItem>
+                      <SelectItem value="distribution">Distribution services</SelectItem>
+                      <SelectItem value="brand">Brand-specific inquiry</SelectItem>
+                      <SelectItem value="compliance">Compliance & documentation</SelectItem>
                       <SelectItem value="other">Other</SelectItem>
                     </SelectContent>
                   </Select>
                 </div>
                 <div>
-                  <Label htmlFor="desiredAmount" className="text-[#0B1020] font-medium mb-2">
-                    Desired amount (optional)
+                  <Label htmlFor="details" className="text-[#0B1020] font-medium mb-2">
+                    Product / quantity (optional)
                   </Label>
                   <Input
-                    id="desiredAmount"
+                    id="details"
                     type="text"
-                    value={formData.desiredAmount}
-                    onChange={(e) => handleChange('desiredAmount', e.target.value)}
+                    value={formData.details}
+                    onChange={(e) => handleChange('details', e.target.value)}
                     className="bg-white border-[#E6ECF2]"
-                    placeholder="e.g. IDR 500,000,000"
+                    placeholder="e.g. 500 units, industrial equipment"
                   />
                 </div>
               </div>
@@ -207,7 +221,7 @@ export default function Contact() {
                   value={formData.message}
                   onChange={(e) => handleChange('message', e.target.value)}
                   className="bg-white border-[#E6ECF2] resize-none"
-                  placeholder="Tell us more about your funding needs..."
+                  placeholder="Include specifications, destination, and target delivery date..."
                 />
               </div>
 
