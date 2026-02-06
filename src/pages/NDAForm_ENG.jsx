@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
@@ -9,6 +10,7 @@ import { Send, FileText, CheckCircle2, Download, Upload, X } from 'lucide-react'
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 
 export default function NDAForm_ENG() {
+  const navigate = useNavigate();
   const today = new Date().toISOString().split('T')[0];
   const [showSuccessModal, setShowSuccessModal] = useState(false);
   const [uploadingEn, setUploadingEn] = useState(false);
@@ -16,7 +18,7 @@ export default function NDAForm_ENG() {
   const [ndaId, setNdaId] = useState(null);
   const [isGenerating, setIsGenerating] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  
+
   const [formData, setFormData] = useState({
     effective_date: today,
     nda_type: 'english_only',
@@ -35,12 +37,12 @@ export default function NDAForm_ENG() {
 
   const handleFileUpload = async (file) => {
     if (!file) return;
-    
+
     if (!ndaId) {
       toast.error('Please generate NDA first before uploading signed file');
       return;
     }
-    
+
     setUploadingEn(true);
     try {
       // Создаем FormData для загрузки файла
@@ -167,12 +169,12 @@ __________________ / ${formData.signatory_name_en}`;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
-    const requiredFields = ['company_name_en', 'country_en', 'registration_number', 
-                           'signatory_name_en', 'signatory_title_en', 'address_en', 'contact_email'];
-    
+
+    const requiredFields = ['company_name_en', 'country_en', 'registration_number',
+      'signatory_name_en', 'signatory_title_en', 'address_en', 'contact_email'];
+
     const missingFields = requiredFields.filter(field => !formData[field]);
-    
+
     if (missingFields.length > 0) {
       toast.error('Please fill in all required fields');
       return;
@@ -187,7 +189,7 @@ __________________ / ${formData.signatory_name_en}`;
       toast.error('Please upload the signed English NDA before submitting');
       return;
     }
-    
+
     setIsSubmitting(true);
     try {
       // Вызов API для финальной отправки NDA
@@ -200,7 +202,7 @@ __________________ / ${formData.signatory_name_en}`;
       }
 
       const result = await response.json();
-      
+
       // Показываем модальное окно успеха
       setShowSuccessModal(true);
       toast.success('NDA submitted successfully!');
@@ -212,9 +214,9 @@ __________________ / ${formData.signatory_name_en}`;
     }
   };
 
-  const canDownload = formData.company_name_en && formData.country_en && 
-                      formData.registration_number && formData.signatory_name_en && 
-                      formData.signatory_title_en && formData.address_en && formData.contact_email;
+  const canDownload = formData.company_name_en && formData.country_en &&
+    formData.registration_number && formData.signatory_name_en &&
+    formData.signatory_title_en && formData.address_en && formData.contact_email;
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-[#F6F9FC] to-white py-12 px-4 sm:px-6 lg:px-8">
@@ -222,7 +224,7 @@ __________________ / ${formData.signatory_name_en}`;
         {/* Header */}
         <div className="text-center mb-8">
           <div className="flex items-center justify-center gap-3 mb-4">
-            <img 
+            <img
               src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6949a7445bc738ab35d3303b/b2b800413_PTMITLogoIcon.png"
               alt="PT. MITRA INTERNATIONAL TRANSAKSI"
               className="h-16 w-auto"
@@ -333,7 +335,7 @@ __________________ / ${formData.signatory_name_en}`;
 
               <div className="border-t pt-4">
                 <h4 className="text-sm font-semibold text-[#0B1020] mb-4">Authorized Signatory</h4>
-                
+
                 <div className="space-y-4">
                   <div>
                     <Label htmlFor="signatory_name_en">Full Name *</Label>
@@ -400,7 +402,7 @@ __________________ / ${formData.signatory_name_en}`;
               <p className="text-sm text-[#0B1020]/70">
                 Once you've filled in all the information above, download the NDA document, sign it, and upload the signed file below.
               </p>
-              
+
               {ndaId && (
                 <div className="bg-green-50 border border-green-200 rounded-lg p-3 text-sm">
                   <div className="flex items-center gap-2 text-green-700">
@@ -412,7 +414,7 @@ __________________ / ${formData.signatory_name_en}`;
                   </p>
                 </div>
               )}
-              
+
               <Button
                 type="button"
                 onClick={downloadNDA}
@@ -535,7 +537,7 @@ __________________ / ${formData.signatory_name_en}`;
           </div>
 
           <p className="text-xs text-center text-[#0B1020]/50 max-w-2xl mx-auto">
-            By submitting this form, you agree to enter into a Non-Disclosure Agreement with PT. MITRA INTERNATIONAL TRANSAKSI 
+            By submitting this form, you agree to enter into a Non-Disclosure Agreement with PT. MITRA INTERNATIONAL TRANSAKSI
             for a period of 5 years from the effective date. All information provided will be kept confidential.
           </p>
         </form>
@@ -574,7 +576,10 @@ __________________ / ${formData.signatory_name_en}`;
               </ul>
             </div>
             <Button
-              onClick={() => setShowSuccessModal(false)}
+              onClick={() => {
+                setShowSuccessModal(false);
+                navigate('/');
+              }}
               className="w-full bg-[#2B4192] hover:bg-[#2D368C]"
             >
               Close

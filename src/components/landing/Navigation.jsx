@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, ArrowRight, Globe } from 'lucide-react';
+import { Menu, X, ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Link, useLocation } from 'react-router-dom';
 import { createPageUrl } from '@/utils';
@@ -41,19 +41,18 @@ export default function Navigation() {
 
   return (
     <nav
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-          isScrolled 
-            ? 'bg-gradient-to-r from-white via-[#F6F9FC] to-white backdrop-blur-xl shadow-[0_8px_30px_rgba(43,65,146,0.15)] border-b-2 border-[#2B4192]/10' 
-            : 'bg-gradient-to-r from-white/95 via-[#F6F9FC]/90 to-white/95 backdrop-blur-md border-b border-[#E6ECF2]/50'
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${isScrolled
+          ? 'bg-gradient-to-r from-white via-[#F6F9FC] to-white backdrop-blur-xl shadow-[0_8px_30px_rgba(43,65,146,0.15)] border-b-2 border-[#2B4192]/10'
+          : 'bg-gradient-to-r from-white/95 via-[#F6F9FC]/90 to-white/95 backdrop-blur-md border-b border-[#E6ECF2]/50'
         }`}
-      >
+    >
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <div className="flex items-center justify-between h-24">
           {/* Logo */}
           <Link to={createPageUrl('Home')} className="flex-shrink-0 flex items-center gap-3 group cursor-pointer">
             <div className="relative">
               <div className="absolute inset-0 bg-gradient-to-br from-[#2B4192]/20 via-[#36A0A2]/15 to-[#40B691]/20 rounded-full blur-2xl animate-pulse"></div>
-              <img 
+              <img
                 src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6949a7445bc738ab35d3303b/b2b800413_PTMITLogoIcon.png"
                 alt="PT. MITRA INTERNATIONAL TRANSAKSI"
                 className="h-14 lg:h-16 w-auto object-contain transition-transform duration-300 group-hover:scale-110 relative z-10 drop-shadow-lg"

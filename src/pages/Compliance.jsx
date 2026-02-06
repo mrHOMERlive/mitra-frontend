@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button } from '@/components/ui/button';
-import { Shield, FileText, Globe, Package, MessageSquare, ArrowRight, MessageCircle } from 'lucide-react';
+import { Shield, FileText, Globe, Package, MessageSquare, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { createPageUrl } from '@/utils';
 import Navigation from '../components/landing/Navigation';
@@ -38,7 +38,7 @@ const getSections = (lang) => [
 
 export default function Compliance() {
   const { language } = useLanguage();
-  
+
   const openWhatsApp = () => {
     window.open('https://wa.me/6281117796126', '_blank');
   };
@@ -49,28 +49,28 @@ export default function Compliance() {
       {/* Hero Section */}
       <section className="relative pt-32 pb-20 lg:pt-40 lg:pb-24 overflow-hidden bg-gradient-to-br from-[#E8F3F5] via-[#F6F9FC] to-white">
         <div className="absolute inset-0 bg-[linear-gradient(rgba(43,65,146,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(43,65,146,0.03)_1px,transparent_1px)] bg-[size:64px_64px]"></div>
-        
+
         {/* Animated Blobs */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           <div className="absolute top-20 left-10 w-96 h-96 bg-[#2B4192]/10 rounded-full blur-3xl animate-blob"></div>
           <div className="absolute top-40 right-10 w-80 h-80 bg-[#36A0A2]/10 rounded-full blur-3xl animate-blob animation-delay-2000"></div>
           <div className="absolute bottom-20 left-1/3 w-72 h-72 bg-[#40B691]/10 rounded-full blur-3xl animate-blob animation-delay-4000"></div>
-          
+
           {/* SVG Compliance Icons */}
           <div className="absolute top-32 right-20 opacity-5 animate-float">
             <svg width="130" height="130" viewBox="0 0 130 130">
-              <circle cx="65" cy="65" r="55" stroke="#2B4192" strokeWidth="4" fill="none"/>
-              <path d="M45 65 L60 80 L90 50" stroke="#36A0A2" strokeWidth="5" fill="none"/>
+              <circle cx="65" cy="65" r="55" stroke="#2B4192" strokeWidth="4" fill="none" />
+              <path d="M45 65 L60 80 L90 50" stroke="#36A0A2" strokeWidth="5" fill="none" />
             </svg>
           </div>
           <div className="absolute bottom-32 left-20 opacity-5 animate-float animation-delay-3000">
             <svg width="110" height="110" viewBox="0 0 110 110">
-              <rect x="15" y="15" width="80" height="80" rx="10" stroke="#40B691" strokeWidth="4" fill="none"/>
-              <path d="M35 55 L50 70 L75 40" stroke="#2B4192" strokeWidth="4" fill="none"/>
+              <rect x="15" y="15" width="80" height="80" rx="10" stroke="#40B691" strokeWidth="4" fill="none" />
+              <path d="M35 55 L50 70 L75 40" stroke="#2B4192" strokeWidth="4" fill="none" />
             </svg>
           </div>
         </div>
-        
+
         <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
           <div className="max-w-3xl">
             <div className="inline-block mb-6">
@@ -91,28 +91,28 @@ export default function Compliance() {
       {/* Sections Grid */}
       <section className="py-20 lg:py-32 relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-b from-white via-[#E8F3F5] to-[#F0F7F9]"></div>
-        
+
         {/* Decorative Elements */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
           <div className="absolute top-1/4 right-10 opacity-5 animate-float">
             <svg width="110" height="110" viewBox="0 0 110 110">
-              <polygon points="55,10 100,40 85,100 25,100 10,40" fill="#2B4192"/>
+              <polygon points="55,10 100,40 85,100 25,100 10,40" fill="#2B4192" />
             </svg>
           </div>
           <div className="absolute bottom-1/4 left-10 opacity-5 animate-float animation-delay-2000">
             <svg width="90" height="90" viewBox="0 0 90 90">
-              <circle cx="45" cy="45" r="35" stroke="#36A0A2" strokeWidth="5" fill="none"/>
-              <circle cx="45" cy="45" r="18" fill="#40B691"/>
+              <circle cx="45" cy="45" r="35" stroke="#36A0A2" strokeWidth="5" fill="none" />
+              <circle cx="45" cy="45" r="18" fill="#40B691" />
             </svg>
           </div>
         </div>
-        
+
         <div className="max-w-5xl mx-auto px-6 lg:px-8 relative z-10">
           {/* Compliance Photos Section */}
           <div className="mb-16 grid md:grid-cols-2 gap-6">
             <div className="group relative h-72 rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-2">
-              <img 
-                src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&q=80" 
+              <img
+                src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&q=80"
                 alt="Documentation review"
                 className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
               />
@@ -121,8 +121,8 @@ export default function Compliance() {
               </div>
             </div>
             <div className="group relative h-72 rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-2">
-              <img 
-                src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&q=80" 
+              <img
+                src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&q=80"
                 alt="Compliance verification"
                 className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
               />
@@ -131,7 +131,7 @@ export default function Compliance() {
               </div>
             </div>
           </div>
-          
+
           <div className="space-y-6">
             {getSections(language).map((section, index) => {
               const Icon = section.icon;
@@ -172,13 +172,13 @@ export default function Compliance() {
       <section className="py-20 lg:py-32 relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-[#2B4192] via-[#2D368C] to-[#36A0A2] animate-gradient"></div>
         <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.05)_1px,transparent_1px)] bg-[size:64px_64px]"></div>
-        
+
         {/* Glow Effects */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           <div className="absolute top-20 left-1/4 w-64 h-64 bg-white/10 rounded-full blur-3xl animate-pulse"></div>
           <div className="absolute bottom-20 right-1/4 w-80 h-80 bg-[#40B691]/20 rounded-full blur-3xl animate-pulse animation-delay-2000"></div>
         </div>
-        
+
         <div className="max-w-4xl mx-auto px-6 lg:px-8 relative z-10 text-center">
           <div className="inline-block mb-4">
             <div className="px-4 py-2 rounded-full bg-white/20 backdrop-blur-sm border border-white/30">
