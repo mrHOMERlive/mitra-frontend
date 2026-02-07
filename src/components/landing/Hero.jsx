@@ -17,7 +17,7 @@ export default function Hero() {
   };
 
   const openWhatsApp = () => {
-    window.open('https://wa.me/6281117796125', '_blank');
+    window.open('https://wa.me/6281117796126', '_blank');
   };
 
   return (
@@ -29,7 +29,7 @@ export default function Hero() {
         <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[#36A0A2] rounded-full mix-blend-multiply filter blur-3xl opacity-[0.08] animate-blob animation-delay-2000"></div>
         <div className="absolute bottom-0 left-1/2 w-[600px] h-[600px] bg-[#40B691] rounded-full mix-blend-multiply filter blur-3xl opacity-[0.08] animate-blob animation-delay-4000"></div>
       </div>
-      
+
       {/* Floating Shapes & Illustrations */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-20 left-10 w-32 h-32 border-4 border-[#2B4192]/10 rounded-full animate-float"></div>
@@ -40,18 +40,18 @@ export default function Hero() {
         {/* Trade Illustration Elements */}
         <div className="absolute top-32 right-10 opacity-10 animate-float">
           <svg width="120" height="120" viewBox="0 0 120 120" fill="none">
-            <circle cx="60" cy="60" r="50" stroke="#2B4192" strokeWidth="3"/>
-            <path d="M30 60 L60 30 L90 60 L60 90 Z" fill="#36A0A2"/>
+            <circle cx="60" cy="60" r="50" stroke="#2B4192" strokeWidth="3" />
+            <path d="M30 60 L60 30 L90 60 L60 90 Z" fill="#36A0A2" />
           </svg>
         </div>
         <div className="absolute bottom-32 left-10 opacity-10 animate-float animation-delay-2000">
           <svg width="100" height="100" viewBox="0 0 100 100" fill="none">
-            <rect x="10" y="10" width="80" height="80" rx="10" stroke="#40B691" strokeWidth="3"/>
-            <path d="M30 50 L50 30 L70 50" stroke="#2B4192" strokeWidth="2" fill="none"/>
+            <rect x="10" y="10" width="80" height="80" rx="10" stroke="#40B691" strokeWidth="3" />
+            <path d="M30 50 L50 30 L70 50" stroke="#2B4192" strokeWidth="2" fill="none" />
           </svg>
         </div>
       </div>
-      
+
       {/* Grid Pattern */}
       <div className="absolute inset-0 bg-[linear-gradient(rgba(43,65,146,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(43,65,146,0.03)_1px,transparent_1px)] bg-[size:64px_64px] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_50%,black,transparent)]"></div>
 
@@ -65,7 +65,7 @@ export default function Hero() {
               {t(language, 'hero.titleHighlight')}
             </span>
           </h1>
-          
+
           {/* Decorative Line */}
           <div className="flex items-center justify-center gap-3 mb-6">
             <div className="h-1 w-16 bg-gradient-to-r from-transparent via-[#2B4192] to-transparent rounded-full"></div>
